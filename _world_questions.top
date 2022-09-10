@@ -4,6 +4,9 @@ Add these to raise your chatbot's IQ from 12 to 13.
 These are responses to real world questions such as "What's 3 x 3?" and "Can an eagle fly?"
 Users curious about how intelligent a bot really is will occasionally ask stuff like this.
 
+This is for Chatscript 10.3 (I have unrelated problems with later versions)
+Also, it seems that in later versions most movie, book, videogame titles etc have been removed.
+
 Still working out the kinks.
 I can't possibly be the most qualified to share this--been using Chatscript less than 3 months--
 but can't find code like this anywhere for some reason, which is perplexing for a framework that's been around for years and is open source.
@@ -164,23 +167,24 @@ u: (<< _~number be [even odd] >>) ^refine()
     a: (*) ^NOCAN()
 
 
-# output is weird and it fails for some obvious cases like what color is water. need a better way to do this....
 #! What color is a lemon?
 ?: ([
     ([what which] color be {a} _*~2 > )
     (< {a} _*~2 be [what which] color)
     ([what which] be *~1 color of {a} _*~2 >)
     (color of {a} _*~2 be [what which])
-    ]
-    ^query(direct_svo _0 member ~color_adjectives) )
-    ^pos(NOUN _0 PLURAL) are @0object.
+    ]) ^refine()
+    # ^query(direct_svo _0 member ~color_adjectives) )
+    # ^pos(NOUN _0 PLURAL) are @0object.
+    a: (^query(direct_sv _0 color ?) )
+        @0object.
+    a: (*) ^pos(NOUN _0 PLURAL) can be more than one color, I think.
 
- # only handles 4 colors, however
 #! Is the sky blue?          
 ?: ([
-    (be {a} _*1 _~color_adjectives >)
-    (be {a} _*2 _~color_adjectives >)
-    (< {a} _*~2 be _~color_adjectives >)
+    (be {a} _*1 ~color_adjectives >)
+    (be {a} _*2 ~color_adjectives >)
+    (< {a} _*~2 be ~color_adjectives >)
     ]) 
     _0 ?
     ^refine()
@@ -188,6 +192,7 @@ u: (<< _~number be [even odd] >>) ^refine()
     a: (_0?~yellow) That's yellow.
     a: (_0?~red) That's red.
     a: (_0?~green) That's green.
+    a: (^query(direct_sv _0 color ?) ) That's @0object.
     a: (~blue ~yellow ~green ~red) I'm not sure that's '_1.
     a: (*) I'm not sure.
 
@@ -508,8 +513,7 @@ u: ([
 ?: (what * oppos* of _*~1) ^refine()
     a: (^query(direct_sv _0 opposite ?) )
         How about @0object.
-    a: (^query(direct_vo ? opposite _0) )
-        @0subject.
+
 
 #! What is a male horse 
 ?: (what * male _*1) ^refine()
@@ -645,5 +649,6 @@ u: ([what ([make give] * word)] * rhyme with _*1 >)
     @0 = ^rhyme(_0)
     [Oh let me see.... Okay, @0object rhymes with _0.]
     [How about... @0object. It rhymes with _0.]
+
 
 

@@ -1,2 +1,2 @@
 
-Just sharing some code I use in Chatscript. More to come... 
+Just sharing some code I use in Chatscript.
