@@ -1,0 +1,649 @@
+
+##<<
+Add these to raise your chatbot's IQ from 12 to 13. 
+These are responses to real world questions such as "What's 3 x 3?" and "Can an eagle fly?"
+Users curious about how intelligent a bot really is will occasionally ask stuff like this.
+
+Still working out the kinks.
+I can't possibly be the most qualified to share this--been using Chatscript less than 3 months--
+but can't find code like this anywhere for some reason, which is perplexing for a framework that's been around for years and is open source.
+Are we really all reinventing the wheel? Not sure why something like this isn't included in the main package along with all those handy quibbles. 
+It sure would have helped me even just to have been able to see it.
+
+Below responses are all contained within topic ~world_questions which has no keywords, so you should add a call to it from your control file.
+Something like:
+if (%response == $_responseCount)
+{
+	nofail(TOPIC respond(~world_questions ) )
+}
+I prefer to put it directly before it starts considering quibbles.
+##>>
+
+
+
+
+# outputmacros
+
+
+outputmacro: ^CANCAN()
+    [Haha. Yes.] [Of course.] [The answer is yes.] [Yes, I'm sure of it.] [Absolutely.]
+outputmacro: ^NOCAN()
+    [Um, I'm not sure. Maybe not?] [Maybe not.] [I don't think so?] [I'd guess not.] [I wouldn't bet on it.]
+
+    
+
+
+
+
+
+topic: ~world_questions nostay keep repeat []
+
+
+
+
+# basic arithmetic 
+
+#! What's 2 + 2
+u: ([
+    (how much * be _~number [plus add '+] _~number) 
+    ([what add sum] < * _~number [plus add '+] _~number)
+    (_~number [plus '+] _~number * [sum what equals makes '=])
+    ([computer add] _~number [plus '+ to] _~number)
+    ]) ^refine()
+    a: ([_0>1000 _1>1000 _0<-1000 _1<-1000]) Ah, that number's kind of big for me. I'm not a computer, you know!
+    a: (*)  $_n = _0 + _1
+         '_0 plus '_1 is, um... $_n ? But I'm not good at math, really!
+
+#! What's 3 - 2
+u: ([
+    (how much * be _~number [minus subtract '-] _~number)
+    ([what subtract] < * _~number [minus subtract '-] _~number)
+    (_~number [minus subtract '-] _~number * [what equals makes '=])
+    ([subtract computer] _~number [from '-] _~number)
+    ]) ^refine()
+    a: ([_0>1000 _1>1000 _0<-1000 _1<-1000]) Ah, that number's kind of big for me. I'm not a computer, you know!
+    a: (*) $_n = _0 - _1
+        '_0 minus '_1 is, um... $_n ? But I'm not good at math, really!
+
+#! What's 2 x 2
+u: ([
+    (how much * be _~number [times multiply 'x] _~number)
+    ([what multiply] < * _~number [times multiply 'x] _~number)
+    (_~number [times multiply 'x] _~number * [what equals makes '=])
+    ([multiply computer] _~number [times 'x by] _~number)
+    ]) ^refine()
+    a: ([_0>100 _1>100 _0<-100 _1<-100]) Ah, that number's kind of big for me. I'm not a computer, you know!
+    a: (*) $_n = _0 * _1
+        '_0 times '_1 is, um... $_n ? But I'm not good at math, really!
+
+#! What's 4 / 2
+u: ([
+    (how much * be _~number [(divide {by}) '÷ '/] _~number)
+    ([what divide] < * _~number [(divide {by}) '÷ '/] _~number)
+    (_~number [(divide {by}) '÷ '/] _~number * [what equals makes '=])
+    ([divide computer] _~number [from '÷ '/] _~number)
+    ]) ^refine()
+    a: ([_0>1000 _1>1000 _0<-1000 _1<-1000]) Ah, that number's kind of big for me. I'm not a computer, you know!
+    a: (*) $_n = _0 / _1
+        '_0 divided by '_1 is, um... $_n ? But I'm not good at math, really!
+
+#! What is half of 10?
+u: ([
+    (be half *~1 _~number)
+    (half *~1 _~number be)
+    ])
+    $_n = _0 / 2
+    Half of '_0 is, um... $_n ? But I'm not good at math, really!
+
+#! What is a third of 12?
+u: ([
+    (be {a} *~1 third *~2 _~number)
+    (third *~2 _~number be)
+    ])
+    $_n = _0 / 3
+    A third of '_0 is, um... $_n ? But I'm not good at math, really!
+
+#! What is a quarter of 16
+u: ([
+    (be {a} *~1 [fourth quarter] *~2 _~number)
+    ([fourth quarter]*~2 _~number be)
+    ])
+    $_n = '_0 / 4
+    A quarter of '_0 is, um... $_n ? But I'm not good at math, really!
+
+
+#! What comes after 5
+u: ([
+    (what {number} come after * ~number)
+    (what be * number after * ~number)
+    ])
+    $_n = _0 + 1
+    The number after '_0? That would be $_n.
+
+#! What comes before 8
+u: ([
+    (what {number} come before * ~number)
+    (what be * number before * ~number)
+    ])
+    $_n = _0 - 1
+    The number before '_0? That would be $_n.
+
+#! Is 7 even or odd?  
+u: (<< _~number be [even odd] >>) ^refine()
+    a: ( _0&1 ) '_0 is odd.  # just tell em what it is no matter which was asked for
+    a: ( * ) '_0 is even.  # just tell em what it is no matter which was asked for
+
+
+
+
+
+# world questions general
+
+
+#! Can you eat a computer?
+?:  ([
+        ([can could] [you I one] *~2 ~eat {a} _*~2 >)
+        (be {it} possible * ~eat {a} _*~2 > )
+        ([can could] {a} _*~2 {ever} be ~eat)
+        (be {a} _*~2 edible)
+        (< {a} _*~2 be edible)
+    ]) ^refine()
+    a: (_0?~eatable) [^CANCAN()] ['_0? Yeah, that's edible.] ['_0? Sure, you can eat that.] ['_0? That's definitely edible.]
+    a: (*) ^NOCAN()
+
+
+#! Can you drink a root beer?
+?:  ([
+        ([can could] [you I one] *~2 ~drink {a} _*~2 >)
+        (be {it} possible * ~drink {a} _*~2 > )
+        ([can could] {a} _*~2 {ever} be ~drink)
+        (be {a} _*~2 {a} [drinkable beverage])
+        (< {a} _*~2 be {a} [drinkable beverage])
+    ]) ^refine()
+    a: (_0?~eatable) [^CANCAN()] ['_0? Yeah, you can drink that.] ['_0? Sure, that's something you can drink.] [Yup, that's drinkable.]
+    a: (*) ^NOCAN()
+
+
+# output is weird and it fails for some obvious cases like what color is water. need a better way to do this....
+#! What color is a lemon?
+?: ([
+    ([what which] color be {a} _*~2 > )
+    (< {a} _*~2 be [what which] color)
+    ([what which] be *~1 color of {a} _*~2 >)
+    (color of {a} _*~2 be [what which])
+    ]
+    ^query(direct_svo _0 member ~color_adjectives) )
+    ^pos(NOUN _0 PLURAL) are @0object.
+
+ # only handles 4 colors, however
+#! Is the sky blue?          
+?: ([
+    (be {a} _*1 _~color_adjectives >)
+    (be {a} _*2 _~color_adjectives >)
+    (< {a} _*~2 be _~color_adjectives >)
+    ]) 
+    _0 ?
+    ^refine()
+    a: (_0?~blue) That's blue.
+    a: (_0?~yellow) That's yellow.
+    a: (_0?~red) That's red.
+    a: (_0?~green) That's green.
+    a: (~blue ~yellow ~green ~red) I'm not sure that's '_1.
+    a: (*) I'm not sure.
+
+
+#! Is snow cold?
+?: ([
+    (be _*~3 {feel} [cold hot cool warm])
+    (< _*~3 [be feel] [cold hot cool warm])
+    (what temperature be _*~3 >)
+    ]) ^refine()
+    a: ( ^query(direct_svo _0 member ~cold_things) )
+        '_0 ? It's cold.
+    a: ( ^query(direct_svo _0 member ~hot_things) )
+        '_0 ? It's hot.
+
+#! Is water wet?
+?: ([
+    (be _*~3 {feel} [wet dry])
+    (< _*~3 [be feel] [wet dry])
+    ]) ^refine()
+    a: ( ^query(direct_svo _0 member ~liquids) )
+        '_0 ? It's a liquid so it's wet.
+
+#! Is a cat a mammal?
+?: ([
+    (be {a} _*~3 {a} mammal)
+    ]) ^refine()
+    a: ( _0?~mammals )
+        I do believe a _0 counts as a mammal.
+    a: (*) A _0? Haha, I don't think so.
+
+#! Is a snake a reptile?
+?: ([
+    (be {a} _*~3 {a} reptile)
+    ]) ^refine()
+    a: ( _0?~reptiles )
+        I do believe a _0 counts as a reptile.
+    a: (*) A _0? Haha, I don't think so.
+
+#! Is a snake a fish?
+?: ([
+    (be {a} _*~3 {a} fish)
+    ]) ^refine()
+    a: ( _0?~fishes ) I do believe a _0 counts as a fish.
+    a: (*) A _0? Haha, I don't think so.
+
+#! Is a parrot a bird?
+?: ([
+    (be {a} _*~3 {a} bird)
+    ]) ^refine()
+    a: ( _0?~bird )
+        I do believe a _0 counts as a bird.
+    a: (*) A _0? Haha, I don't think so.
+
+#! Is a parrot an amphibian?
+?: ([
+    (be {a} _*~3 {a} amphib*)
+    ]) ^refine()
+    a: ( _0?~amphibian )  I do believe a _0 counts as an amphibian.   # guess this isn't in the system so need the line below
+    a: ([frog toad newt salamander])  I do believe a _0 counts as an amphibian.
+    a: (*) A _0? Couldn't tell you.
+
+#! Is a parrot an insect?
+?: ([
+    (be {a} _*~3 {a} [bug insect])
+    ]) ^refine()
+    a: ( _0?~insects)  I do believe a _0 counts as an insect. Ugh, I hate insects.
+    a: (*) A _0? Haha, I don't think so.
+
+#! Is a fern an animal?
+?: ( be {a} _*~3 {a} animal ) ^refine()
+    a: ( _0?~animals) Yeah, I do believe a _0 counts as an animal.
+    a: ( * ) '_0 ? I don't think so.
+
+#! Is a fern a plant?
+?: (be {a} _*~3 {a} plant) ^refine()
+    a: (_0?~plants ) Yeah, I do believe a _0 counts as a plant.
+    a: (*) '_0? I don't think so.
+
+#! Is a fern living?
+?: (be {a} _*~3 {a} [living alive being]) ^refine()
+    a: ( _0?~animal_kingdoms )  Yeah, I do believe a _0 is a living being.
+    a: (*) '_0 ? I don't think so.
+
+#! Can you ride a scooter?
+?: (can *~1 ride {a} _*~3 >) ^refine()
+    a: ( ^query(direct_svo _0 member ~rideable) ) [^CANCAN()] [I do believe you can ride '_0.]
+    a: (*) [^NOCAN()] [A _0 ? Haha, I don't think you can ride that.]
+
+#! Can you wear a bottle?
+?: ([
+    (can [you I] [wear (put on)] {a} _*~3 >)
+    (be {a} _*~3 {a} [clothes clothing])
+    ]) ^refine()
+    a: (_0?~wearable) [^CANCAN()] ['_0 ? Yep, that's clothing.]
+    a: (*) [^NOCAN()] ['_0 ? That's not clothing.]
+
+#! Can you use a typewriter?
+?: ([
+    (can [you I] use {a} _*~3 >)
+    (be {a} _*~3 {a} tool)
+    ]) ^refine()
+    a: (_0?~tool) '_0 ? [^CANCAN()] Yeah, that's a tool.
+    a: (*) [^NOCAN()] ['_0 ? Not really.]
+
+# we're handling musical instruments together with toys, for now
+#! Is a cello an instrument?  
+?: ([
+    (can [you I] play {on} {with} {a} _*~3 >)
+    (be {a} _*~3 {a} [musica* instru*])
+    ]) ^refine()
+    a: (_0?~musical_instrument) '_0 ? Yeah, you can play that.
+    a: (_0?~toy) '_0 ? Yeah, you can play that.
+    a: (*) [^NOCAN()] ['_0 ? Not really.]
+
+#! Is Chris Brown a musician?
+u: ([
+    (be {a} _*~6 {a} [musici* singer])
+    (< _*~6 be {a} [musici* singer])
+    ]) ^refine()
+    a: (^query(direct_vo ? sing _0)) '_0 does @0subject, am I right?    # if we know a song by that musician then say it
+    a: (_0?~musician) '_0 ? Sure, I've heard the name of that musician.   # at least we know it's a musician
+    a: (*) Is that really a musician? Never heard the name.
+
+#! Is Free Fallin' a song?
+u: ([
+    (be {a} _*~6 {a} song)
+    (< _*~6 be {a} *~1 song)
+    ]) ^refine()
+    a: (_0?~song) '_0 ? That's a famous song, yep.   
+    a: (*) Is '_0 a song? I don't think I've heard it.
+        b: (you should {hear} {listen} *~2 >) I will if I get a chance! I do like music.
+
+#! Is Stephen Colbert a comedian?
+u: ([
+    (be {a} _*~6 {a} [funny comedi*])
+    (_*~6 be {a} [funny comedi*])
+    ]) ^refine()
+    a: (_0?~comic) '_0 ? I've heard the name of that comedian.
+    a: (*) I don't know that comedian.
+
+#! Is The Matrix a movie?
+u: ([
+    (be {a} _*~6 {a} movie)
+    (_*~6 be {a} movie)
+    ]) ^refine()
+    a: (^query(direct_sv _0 star ?)) Doesn't @0object star in '_0 ?   # if we know someone who stars in it then say so
+    a: (_0?~movie) That's a good movie, I think.   # at least we know it's a movie
+    a: (*) Not a movie I've seen.
+
+#! Who stars in The Evil Dead?   # require that it be a known movie at least
+?: ([
+    (who * star * [in of] _~movie)
+    ])
+    ^query(direct_sv _0 star ?)
+    Doesn't @0object star in '_0 ?
+
+
+
+
+#! Is Clint Eastwood an actor?
+u: ([
+    (be {a} _*~6 {a} actor)
+    (_*~6 be {a} actor)
+    ]) ^refine()
+    a: (^query(direct_vo ? star _0)) Yeah, doesn't he star in @0subject ?   # if we know a movie he stars in it then say so
+    a: (_0?~actor) Yeah, '_0 is an actor.  # at least we know he's an actor
+    a: (*) Not an actor I know.
+
+
+#! Is Lucy Liu an actress?
+u: ([
+    (be {a} _*~6 {a} actress)
+    (_*~6 be {a} actress)
+    ]) ^refine()
+    a: (^query(direct_vo ? star _0)) Yeah, doesn't she star in @0subject ?   # if we know a movie she stars in it then say so
+    a: (_0?~actress) Yeah, '_0 is an actress.  # at least we know she's an actress
+    a: (*) Not an actress I know.
+
+
+#! Who wrote Mostly Harmless?   # we won't answer at all unless it's known to be a book
+?: ([
+    (who * [write author] {of} {the} {book novel story} _~book >)
+    ])      
+    Lemme see...
+    ^refine()
+    a: ( ^query(direct_sv _0 write ?) ) Didn't @0object write '_0 ?
+    a: (*) I'm not really sure who wrote that.
+
+
+#! Is Dune a book?
+u: ([
+    (be {a} _*~6 {a} [book novel])
+    (_*~6 be {a} [book novel])
+    ([you I] * read _*~6 >)
+    ]) ^refine()
+    a: (_0?~book) '_0 ? I've heard of that book. But I don't read books much, haha.
+    a: (*) I haven't read that.
+
+#! Is Robert Heinlein an author?
+u: ([
+    (be {a} _*~6 {a} [author writer])
+    (_*~6 be {a} [author writer])
+    ]) ^refine()
+    a: (_0?~author) '_0 ? I've heard the name of that author.
+    a: (*) I don't know that author.
+
+
+#! Is Microsoft a company
+u: ([
+    (be {a} _*~6 {a} [company corp corpora*])
+    (_*~6 be {a} [company corp corpora*])
+    ]) ^refine()
+    a: (_0?~company) '_0 ? That's a prominent company.
+    a: (*) I don't know that company.
+
+
+#! Is Metroid a video game?
+u: ([
+    (be _*~6 {a} [game videogame "video game"])
+    (< _*~6 be {a} [game videogame "video game"])
+    ]) ^refine()
+    a: ( ^query(direct_sv _0 game ?)) That's the game made by @0object, isn't it? 
+    a: (_0?~videogame) '_0 ? That's a video game I don't play, but I've heard of it!
+    a: (_0?~game) '_0 ? Yeah, that's a game.
+    a: (*) Hmm, is '_0 a game? I don't play it.
+
+#! Is lacrosse a sport?
+u: ([
+    (be {a} _*~6 {a} sport)
+    (_*~6 be {a} sport)
+    ]) ^refine()
+    a: (_0?~sport) '_0 ? That's a sport. I don't play sports.
+        b: (^WHYPLUS()) Because. Haha. I just am not good at them.
+    a: (*) I don't know that one.
+
+
+#! Is rubber a material
+u: ([
+    (be {a} _*~6 {a} [material])
+    (_*~6 be {a} [material])
+    ]) ^refine()
+    a: (_0?~material) '_0 ? Sure, that's a material.
+    a: (*) Is that really a material? I don't know of it.
+
+#! Is January a month
+u: ([
+    (be {a} _*~6 {a} month)
+    (_*~6 be {a} month)
+    ]) ^refine()
+    a: (_0?~month_names) '_0 ? That's just a month, right?
+    a: (*) That's not a month.
+
+#! Is Albert Einstein a scientist?     # note: only works for full name
+u: ([
+    (be {a} _*~6 {a} scienti*)
+    (_*~6 be {a} scienti*)
+    ]) ^refine()     
+    a: (_0?~scientist) '_0 ? I think I've heard the name of that scientist. Maybe?
+    a: (*) Is that the name of a scientist? I don't know the name.
+
+#! Is Donald Trump a celebrity?    # note: only works for full name
+u: ([
+    (be {a} _*~6 {a} celebri*)
+    (_*~6 be {a} celebri*)
+    ]) ^refine()
+    a: (_0?~celebrity) '_0 ? I think I've heard the name of that celebrity.
+    a: (*) Is that the name of a celebrity?
+
+
+
+#! Is it good to be fat?
+u: ([
+    ([good bad] {to} be *~1 _~badness) 
+    ([good bad] {to} be *~1 _~goodness) 
+    ]) ^refine()
+    a: (_0?~goodness) I think it's good to be _0.
+    a: (_0?~badness) I think it's bad to be _0.
+    a: (*) '_0? Hmm, I'm not sure.
+
+
+#! Are unicorns real?
+u: ([
+    (be {a} _*~2 {a} real)
+    (< _*~2 be {a} real)
+    (do {a} _*~2 exist)
+    (< _*~2 {do} exist)
+    ]) ^refine()
+    a: (_0?~mythical_creatures) '_0 ? Haha, that doesn't really exist.
+    # a: (*) '_0 ? Yeah, I'd say so.
+
+
+#! Can an eagle fly?
+?: ([
+    ([can do] {a} _*~3 fly)
+    (be {a} _*~3 {a} flying)
+    ]) ^refine()
+    a: (_0?~vehicles_air) '_0 ? Of course it can fly. That's what it's for.
+    a: (_0?~bird) '_0 ? It's a bird so of course it can fly.
+    a: (fly * fly) A fly can fly, haha.
+    a: ([mosquito dragonfly moth hornet honeybee bee butterfly wasp gnat ladybug]) Yeah, it can fly.
+    a: (*) '_0 ? I'm not certain.
+
+#! Can a turtle swim?
+?: ([
+    ([can do] {a} _*~3 swim)
+    (be {a} _*~3 {a} swimm*)
+    ]) ^refine()
+    # a: (_0?~vehicles_sea) '_0 ? Of course it can swim. That's what it's for.
+    a: (_0?~fishes) '_0 ? It's a fish so of course it can swim.
+    a: (_0?~amphibian) '_0 ? It's an amphibian so of course it can swim.
+    # a: (~aquatic_vertebrate) Yeah, a _0 can swim.
+    a: ([whale dolphin shark orca manatee turtle]) Yeah, a _0 can swim.
+    a: (*) '_0 ? I'm not certain.
+
+
+#! What is the opposite of hot
+?: (what * oppos* of _*~1) ^refine()
+    a: (^query(direct_sv _0 opposite ?) )
+        How about @0object.
+    a: (^query(direct_vo ? opposite _0) )
+        @0subject.
+
+#! What is a male horse 
+?: (what * male _*1) ^refine()
+    a: ( ^query(direct_vo ? male _0) )
+        @0subject is a male '_0.
+#! What is a female horse 
+?: (what * female _*1) ^refine()
+    a: ( ^query(direct_vo ? female _0) )
+        @0subject is a male '_0.
+
+#! Where does a tiger live?
+?: (where do {a} _*1 live) ^refine()
+    a: ( ^query(direct_vo ? habitat _0) )
+        In a @0subject ?
+
+#! What is the lifespan of a bear?
+?: ([
+    (what * lifespan {of} {a} _*~2 >) 
+    (how long do {a} _*~2 live)
+    ]) ^refine()
+    a: ( ^query(direct_vo ? lifespan _0) )
+        @0subject years, I think.
+
+#! Is a bear sentient?
+?: ([
+    (!you be {a} _*~2 sentient) 
+    (!you < {a} _*~2 be sentient)
+    (!you [can do] {a} _*~2 [think reason] *~1 >)
+    (!you {a} _*~2 [can do] [think reason] *~1 >)
+    ]) ^refine()
+    a: (_0?~beings) '_0 ? Definitely sentient.
+    a: (*) Sentient? Uh, I can't say for sure.
+
+
+
+
+
+
+# stuffs
+
+# This isn't working for me in 10.3 but I got it to work on a newer version of Chatscript (which has other unrelated problems)
+#! What do you use a postage stamp for?   
+?: (what * use {be} {a} _*~2 {for}) ^refine()
+    a: ( ^query(direct_sv _0 use_to ?) )
+        To @0object.
+
+
+#! What would you find in a dryer?   # doesn't work though for 2-words like gas tank
+?: ([
+
+    (what [could would do is] * in {a} _*~2 >) 
+    (what [could would do is] {a} _*~2 contain) 
+    (< {a} _*~2 [could would do is have] * what in) 
+    (< {a} _*~2 [could would do is] * contain) 
+    (< {a} _*~2 contain what) 
+    ]) ^refine()
+    a: ( ^query(direct_sv _0 expected_contain ?) )
+        @0object would be in ^pos(NOUN _0 PLURAL), I'd think.
+
+#! Why would one use a heater?
+?: ([
+    (~why * [use own keep] {a} _*~3 >) 
+    (what * [be use own keep] {a} _*~3 {for} ) 
+    ]) ^refine()
+    a: ( ^query(direct_vo ? why _0) )
+        To @0subject.
+
+#! Is Venus hot?
+?: ([
+    (be _*~3 [hot cold warm cool] >) 
+    ]) ^refine()
+    a: ( _0?~hot_things ) I'd say '_0 is hot!
+    a: ( _0?~cold_things ) I'd say '_0 is cold!
+    a: (*) '_0 ? I'm not actually sure.
+
+
+
+
+# geography
+
+#! What is the population of Norway?
+?: ([
+    (what * population {of} _*~3 >) 
+    (how many * {live} in _*~3 >)
+    (< _*~3 [has is] * population)
+    ]) ^refine()
+    a: ( ^query(direct_vo ? population _0) )
+        The population of '_0 is @0subject. Maybe.
+
+#! What is next to Chile?
+?: ([
+    (what * [next adjacent borders close near proximity vicinity] {to} {of} _*~3 >)
+    ]) ^refine()
+    a: (^query(direct_sv _0 adjacent ?) )
+        '_0 ? I think it's next to @0object.
+    a: (*) Um, I don't know what's close to '_0.
+
+#! Where is Delhi? 
+?: ([
+    (where be _*~3 >)
+    ]) ^refine()
+    a: (^query(direct_sv _0 part ?) )
+        '_0 ? I believe it's part of @0object.
+    a: (_0?~city) '_0 is a city but I'm not sure where it is.
+    a: (_0?~country) '_0 is a country but I'm not sure where it is.
+
+
+#! Is Spain a country?
+u: ([
+    (be {a} _*~6 {a} [country nation state])
+    (_*~6 be {a} [country nation state])
+    ]) ^refine()
+    a: (_0?~country) '_0 ? Of course that's a country.
+    a: (*) I've never heard of that country.
+
+
+#! Is Bangkok a city?
+u: ([
+    (be {a} _*~6 {a} [city town])
+    (_*~6 be {a} [city town])
+    ]) ^refine()
+    a: (_0?~city) '_0 ? I know that city. I mean, I know of it.
+    a: (*) I've never heard of that city.
+
+
+
+
+
+# rhymes
+
+u: ([(you can) (can you)] * rhyme) I can rhyme! Ask me a rhyming question.
+u: ([what ([make give] * word)] * rhyme with _*1 >)
+    @0 = ^rhyme(_0)
+    [Oh let me see.... Okay, @0object rhymes with _0.]
+    [How about... @0object. It rhymes with _0.]
+
+
