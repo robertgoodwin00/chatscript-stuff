@@ -48,7 +48,7 @@ u: ([
     (how much * be _~number [plus add '+] _~number) 
     ([what add sum] < * _~number [plus add '+] _~number)
     (_~number [plus '+] _~number * [sum what equals makes '=])
-    ([computer add] _~number [plus '+ to] _~number)
+    ([compute add] _~number [plus '+ to] _~number)
     ]) ^refine()
     a: ([_0>1000 _1>1000 _0<-1000 _1<-1000]) Ah, that number's kind of big for me. I'm not a computer, you know!
     a: (*)  $_n = _0 + _1
@@ -59,7 +59,7 @@ u: ([
     (how much * be _~number [minus subtract '-] _~number)
     ([what subtract] < * _~number [minus subtract '-] _~number)
     (_~number [minus subtract '-] _~number * [what equals makes '=])
-    ([subtract computer] _~number [from '-] _~number)
+    ([subtract compute] _~number [from '-] _~number)
     ]) ^refine()
     a: ([_0>1000 _1>1000 _0<-1000 _1<-1000]) Ah, that number's kind of big for me. I'm not a computer, you know!
     a: (*) $_n = _0 - _1
@@ -70,7 +70,7 @@ u: ([
     (how much * be _~number [times multiply 'x] _~number)
     ([what multiply] < * _~number [times multiply 'x] _~number)
     (_~number [times multiply 'x] _~number * [what equals makes '=])
-    ([multiply computer] _~number [times 'x by] _~number)
+    ([multiply compute] _~number [times 'x by] _~number)
     ]) ^refine()
     a: ([_0>100 _1>100 _0<-100 _1<-100]) Ah, that number's kind of big for me. I'm not a computer, you know!
     a: (*) $_n = _0 * _1
@@ -81,7 +81,7 @@ u: ([
     (how much * be _~number [(divide {by}) '÷ '/] _~number)
     ([what divide] < * _~number [(divide {by}) '÷ '/] _~number)
     (_~number [(divide {by}) '÷ '/] _~number * [what equals makes '=])
-    ([divide computer] _~number [from '÷ '/] _~number)
+    ([divide compute] _~number [from '÷ '/] _~number)
     ]) ^refine()
     a: ([_0>1000 _1>1000 _0<-1000 _1<-1000]) Ah, that number's kind of big for me. I'm not a computer, you know!
     a: (*) $_n = _0 / _1
