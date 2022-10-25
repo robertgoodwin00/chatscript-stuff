@@ -1,4 +1,4 @@
-##<< More videogame data. I added all this specifically to field the input "My favorite game is x".
+##<< More videogame data. I added these specifically to field the input "My favorite game is x".
 Company might be either the developer or the publisher (not consistent) ##>>
 
 
@@ -17,27 +17,32 @@ if (^company != *)
 }
 DATA:
 1047_Games Splitgate
+2D_Boy World_of_Goo
 2K_Games [Bioshock X-COM]
 343_Industries Halo
 5th_Cell Scribblenauts
+Aaron_A._Reed Blue_Lacuna
 Acclaim_Entertainment [Double_Dragon Re-Volt]
 Accolade,_Inc [Star_Control Test_Drive]
 Activision ["Tony Hawk's Pro Skater" (Tony Hawk) "Rome: Total War"]
+Adam_Cadre [Photopia Varicella]
 AliceSoft Sengoku_Rance (Rance)
 Amccus Harvest_Moon
 Andamiro Pump_it_Up
+Andrew_Plotkin [Spider_and_Web A_Change_in_the_Weather]
 Apogee_Software Wolfenstein_3D
 Appaloosa_Interactive Ecco_the_Dolphin
 Atlus [Catherine Megami_Tensei Persona Trauma_Center]
 Bally_Midway Spyhunter
 Bay_12_Games Dwarf_Fortress
-Bethesda_Softworks [Fallout Dishonored]
+Bethesda_Softworks [Fallout Dishonored Skyrim Oblivion Morrowind]
 Bioware [Mass_Effect Dragon_Age "Baldur's Gate" Neverwinter_Nights]
 Capcom [Final_Fight Dark_Stalkers Devil_May_Cry God_Hand Phoenix_Wright Ace_Attorney Marvel_vs_Capcom Bio_Hazard Monster_Hunter Okami Dead_Rising Breath_of_Fire Bionic_Commando Power_Stone Sengoku_Basara "Ghosts 'n Goblins" Killer7 Puzzle_Fighter Strider]
 Black_Isle_Studios ["Planescape: Torment" (Planescape) "Baldur's Gate" Fallout]
 Blizzard_Entertainment Overwatch
+BlueSky_Software Vectorman
 Brian_Walker Brogue
-Broderbund Lode_Runner
+Broderbund [Lode_Runner Choplifter]
 Bungie Destiny
 California_Dreams Blockout
 Camelot_Software_Planning Golden_Sun
@@ -54,7 +59,8 @@ Croteam The_Talos_Principle
 Crystal_Dynamics Legacy_of_Kain
 Daniel_Mullins_Games Inscryption
 Data_East [Karate_Champ Bad_Dudes Kung-Fu_Master]
-DCSS_Devteam Dungeon_Crawl_Stone_Soup
+"D.O." ["Kana: Little Sister" (Kana Imouto)]
+DCSS_Devteam [Dungeon_Crawl_Stone_Soup (Dcss)]
 Derek_Yu Spelunky
 DMA_Design Lemmings
 Don_Bluth ["Dragon's Lair" Space_Ace]
@@ -63,6 +69,7 @@ Dynamix,_Inc MechWarrior
 Electronic_Arts ["Mirror's Edge" Dead_Space "Command & Conquer" FIFA Archon Syndicate]
 Eidos "Batman: Arkham Asylum"
 ELF_Corporation [Dokyusei (Doukyuusei) Kakyusei (Kakyuusei) YU-NO Dragon_Knight]
+Emily_Short [Galatea "Blood & Laurels" Counterfeit_Monkey "Savoir-Faire"]
 Ensemble_Studios [Age_of_Empires Halo_Wars]
 Epic_Games [Fortnite Gears_of_War Unreal_Tournament]
 Epyx Rogue
@@ -74,6 +81,7 @@ Funcom [The_Longest_Journey Age_of_Conan]
 Gainax Princess_Maker
 Game_Arts Grandia
 Gathering_of_Developers Max_Payne
+".Gears" Flappy_Bird
 Gearbox_Software Borderlands
 Geoff_Crammond The_Sentinel
 Gravity_Co Ragnarok
@@ -86,24 +94,29 @@ id_Software [Doom Quake]
 Illusion [Honey_Select Sexy_Beach SchoolMate Real_Kanojo Koikatsu]
 Infinity_Plus_Two Puzzle_Quest
 Infinity_Ward Call_of_Duty
-Infocom [Trinity A_Mind_Forever_Voyaging]
+Infocom [Trinity A_Mind_Forever_Voyaging Deadline Leather_Goddesses_of_Phobos "The Hitchhiker's Guide to the Galaxy"]
 Infogrames Alone_in_the_Dark
+Innersloth Among_Us
 Insomniac_Games "Ratchet & Clank"
 Intelligent_Systems Advance_Wars
 IO_Interactive ["Kane & Lynch" Hitman]
 Jagex Runescape
 Kindle_Imagine_Develop "Ever 17: The Out of Infinity" (Ever_17)
-King.com_Limited Candy_Crush_Saga
-Konami [Tokimeki_Memorial Gradius Dance_Dance_Revolution (DDR) Contra GuitarFreaks Suikoden Beatmania Love_Plus]
+King.com_Limited [Candy_Crush_Saga (Candy_Crush)]
+Kojima_Productions Death_Stranding
+Konami [Tokimeki_Memorial Gradius Dance_Dance_Revolution (DDR) Contra GuitarFreaks Suikoden Beatmania Love_Plus Policenauts Snatcher]
 Leaf To_Heart
 Looking_Glass_Studios [System_Shock Thief]
 Lucas_Pope Papers,_Please
-Lucasfilm_Games [Monkey_Island Maniac_Mansion Loom Grim_Fandango]
+Lucasfilm_Games [Monkey_Island Maniac_Mansion Loom Grim_Fandango Lego_Star_Wars]
 Majesco Psychonauts
+Matheus_Valadares "Agar.io"
 Matt_Dabrowski Streets_of_Rogue
 Matt_Makes_Games Celeste
 MECC The_Oregon_Trail
 Media_Molecule Little_Big_Planet
+Michael_Gentry Anchorhead
+"Michael Kayin O'Reilly" ["I Wanna Be the Guy: The Movie: The Game" (I_Wanna_Be_the_Guy) (IWBTG)]
 Microsoft_Game_Studios [Fable_II Limbo]
 Midway_Games [Mortal_Kombat NBA_Jam Gauntlet Tetris Marble_Madness Area_51 ]
 Mindscape [Shadowgate The_Uninvited Deja_Vu Warhammer]
@@ -113,15 +126,18 @@ Namco [Katamari_Damacy Ace_Combat Time_Crisis Taiko_no_Tatsujin The_Idolmaster R
 Naughty_Dog [The_Last_of_Us Uncharted]
 NetHack_DevTeam NetHack
 Neverland Lufia
-Nintendo [Smash_Brothers Kid_Icarus Donkey_Kong Punchout "Kirby's Dream Land" Starfox Animal_Crossing F-Zero Fire_Emblem Excitebike Wario_Land Mario_Kart Breath_of_the_Wild Duck_Hunt Pokemon_Platinum "Yoshi's_Island" Dr_Mario Wii_Sports Nintendogs Splatoon]
+Niantic Pokemon_Go
+Nintendo [Smash_Brothers Kid_Icarus Donkey_Kong Punchout "Kirby's Dream Land" Starfox Animal_Crossing F-Zero Fire_Emblem Excitebike Wario_Land Mario_Kart Breath_of_the_Wild Duck_Hunt Pokemon_Platinum "Yoshi's_Island" Dr_Mario Wii_Sports Nintendogs Splatoon Brain_Age]
 Nippon_Ichi Disgaea
 Nitroplus "Steins;Gate"
+Office_Create Cooking_Mama
 Omega_Force Dynasty_Warriors
 Origin_Systems,_Inc [Ultima Wing_Commander]
 PigeoNation Hatoful_Boyfriend
 Piranha_Bytes [Gothic Risen]
 Playabl_Studios Facade
 Polyphony_Digital Gran_Turismo
+Polytron Fez
 Psygnosis Wipeout
 PUBG_Corporation PUBG
 Quintet [ActRaiser Terranigma]
@@ -130,15 +146,16 @@ Rare_Limited [GoldenEye_007 "Wizards & Warriors" Killer_Instinct Battletoads]
 Re-Logic Terraria
 Relic_Entertainment Homeworld
 Riot_Games League_of_Legends
-Robert_Goodwin [Where_One_Citizen Heartache_101 Thanatophobia]
+Robert_Goodwin [Where_One_Citizen Heartache_101 ("Heartache 101 ~Sour into Sweet") Thanatophobia Idolcraft A_Hint_of_a_Tint The_PK_Girl]
 RockStar [Red_Dead_Redemption Bully]
 Rovio_Entertainment Angry_Birds
 Roxor_Games In_the_Groove
-Sega [Shenmue Sakura_Wars Sakura_Taisen Streets_of_Rage Yakuza Phantasy_Star Valkyria_Chronicles Golden_Axe Out_Run Nights_into_Dreams Panzer_Dragoon Bayonetta]
+Sega [Shenmue Sakura_Wars (Sakura_Taisen) Streets_of_Rage Yakuza Phantasy_Star Valkyria_Chronicles Golden_Axe Out_Run Nights_into_Dreams Panzer_Dragoon Bayonetta Altered_Beast]
 Shiny_Entertainment Earthworm_Jim
 Sid_Meier [Civilization "Pirates"]
 Sierra_On-Line Gabriel_Knight
 Silicon_Knights Eternal_Darkness
+Silicon_Studio Bravely_Default
 Sir-Tech Wizardry
 SNK [Metal_Slug Samurai_Showdown King_of_Fighters Crystalis]
 Sony [Parappa_the_Rapper Forbidden_Siren God_of_War Crash_Bandicoot EverQuest Heavy_Rain]
@@ -147,6 +164,7 @@ Smilebit [Jet_Set_Radio Jet_Grind_Radio]
 Studio_Pixel Cave_Story
 Subset_Games "FTL: Faster Than Light"
 Sunsoft Blaster_Master
+Supergiant_Games [Hades Bastion]
 Taito [Space_Invaders Cadash Arkanoid Bubble_Bobble]
 Team17 "Worms"
 Team_Cherry Hollow_Knight
@@ -155,16 +173,19 @@ Team_Meat Super_Meat_Boy
 Tecmo [Ninja_Gaiden Tecmo_Bowl Fatal_Frame Project_Zero Dead_or_Alive]
 Thatgamecompany Journey
 Thekla The_Witness
+Thinking_Rabbit Sokoban
 Toby_Fox Undertale
 Type-Moon Fate/Stay_Night
-Ubisoft [Just_Dance "Prince of Persia: The Sands of Time" "Beyond Good & Evil"]
+Ubisoft [Just_Dance "Prince of Persia: The Sands of Time" "Beyond Good & Evil" Far_Cry]
 United_Game_Artists [Rez Space_Channel_5]
-Valve [Half-life Defense_of_the_Ancients (DotA) Counter-Strike]
+Ustwo_Games Monument_Valley
+Valve [Half-life Team_Fortress Defense_of_the_Ancients (DotA) Counter-Strike]
 Vanillaware Odin_Sphere
 Virgin_Games [Cool_Spot Dune_II]
 Volition Saints_Row
 Wargaming [World_of_Tanks World_of_Warships World_of_Warplanes]
 Westwood_Studios Command_and_Conquer
+Will_Crowther Colossal_Cave_Adventure
 ZA/UM Disco_Elysium
 
 
